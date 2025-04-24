@@ -2,12 +2,13 @@ import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import axios from "axios";
 import { cors } from "hono/cors";
+import { env } from "process";
 
 const app = new Hono();
 app.use(
   "/api/*",
   cors({
-    origin: "http://localhost:5173", // Origen exacto de tu frontend
+    origin: env.ALLOW_ORIGIN || "*",
     credentials: true, // Permite cookies y credenciales
     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"],
@@ -119,21 +120,19 @@ app.get("/api/proxy-alumno", async (c) => {
 
   return c.json({
     success: true,
-    data: {
-      trimester,
-      name,
-      status,
-      firstTrimester,
-      studentId,
-      dedication,
-      lastTrimester,
-      division,
-      enrolledCredits,
-      totalCredits,
-      plan,
-      planKey,
-      email,
-    },
+    trimester,
+    name,
+    status,
+    firstTrimester,
+    studentId,
+    dedication,
+    lastTrimester,
+    division,
+    enrolledCredits,
+    totalCredits,
+    plan,
+    planKey,
+    email,
   });
 });
 
