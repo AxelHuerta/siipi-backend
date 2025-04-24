@@ -8,7 +8,7 @@ const app = new Hono();
 app.use(
   "/api/*",
   cors({
-    origin: env.ALLOW_ORIGIN || "*",
+    origin: env.ALLOW_ORIGIN || "http://localhost:5173",
     credentials: true, // Permite cookies y credenciales
     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"],
